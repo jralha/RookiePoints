@@ -45,11 +45,19 @@ features=[
     ('Draft', 'DP'),
     ('FF_Spaceman', 'Conf'),
     ('College Dominator', 'REC CD'),
-    ('Breakout Age', 'WR BOA (20%)'),
+    # ('Breakout Age', 'WR BOA (20%)'),
     ('Career Best', 'REC/TM PA'),
     ('Career Best', 'REC Yards/TM PA'),
     ('Career Best', 'PPR/GP'),
-    ('Career Best', 'SCRIM YDs/ Touch Over TM AVG')
+    ('Career Best', 'SCRIM YDs/ Touch Over TM AVG'),
+    ('Career Average', 'REC/TM PA'),
+    ('Career Average', 'REC Yards/TM PA'),
+    ('Career Average', 'PPR/GP'),
+    ('Career Average', 'SCRIM YDs/ Touch Over TM AVG'),
+    ('Career Last', 'REC/TM PA'),
+    ('Career Last', 'REC Yards/TM PA'),
+    ('Career Last', 'PPR/GP'),
+    ('Career Last', 'SCRIM YDs/ Touch Over TM AVG')
 
 
 ]
@@ -74,8 +82,8 @@ for col in wr_data['NFL Stats, Finishes, and Milestones'].columns:
 data = wr_data
 
 rooks = data.loc[data[('Draft', 'Draft Year')] == 2020]
-vets = data.loc[data[('Draft', 'Draft Year')] <= 2012]
-soph = data.loc[(data[('Draft', 'Draft Year')] > 2012) & (data[('Draft', 'Draft Year')] < 2016)]
+vets = data.loc[data[('Draft', 'Draft Year')] <= 2017]
+soph = data.loc[(data[('Draft', 'Draft Year')] > 2017) & (data[('Draft', 'Draft Year')] < 2020)]
 
 
 rook_feats = rooks[features[2:-5]]
@@ -197,8 +205,8 @@ for train_ix, test_ix in cv.split(X, hit_vets):
     model = model0
     model.fit(X_train, y_train)
     # evaluate model
-    y_hat = model.predict(X_soph)
-    conf = confusion_matrix(hit_soph,y_hat,normalize='pred')
+    y_hat = model.predict(X_test)
+    conf = confusion_matrix(y_test,y_hat,normalize='pred')
     tp = conf[1][1]
     fn = conf[1][0]
     if tp >= tp_best and fn <= fn_best:
