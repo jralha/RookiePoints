@@ -1,3 +1,3 @@
-Shitty ML model trying to classify WR prospects as hits or misses.
+Attempts at classifying rookie NFL prospects as hits or misses in terms of Fantasy Football performance.
 
-More details and better formated data at [here](https://docs.google.com/spreadsheets/d/1QiLMcgxQNLUPZduLdWjv9ZeX69-WMlGeRuZeIESUlZs/edit#gid=0)
+Rerun for 2021 Prospects yields some actually decent results, models were used on the 2021 Draft class for multiple leagues.
